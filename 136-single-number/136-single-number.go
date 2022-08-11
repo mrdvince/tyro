@@ -1,7 +1,7 @@
 func singleNumber(nums []int) int {
     xor := 0
     for _, num := range nums {
-        xor = xor^num
+        xor ^= num
     }
     return xor
 }
