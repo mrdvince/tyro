@@ -7,6 +7,9 @@
  * }
  */
 func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
+    if root1 == nil && root2 == nil {
+        return nil
+    }
 	if root1 == nil {
 		return root2
 	}
