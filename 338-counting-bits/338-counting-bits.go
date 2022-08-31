@@ -1,7 +1,7 @@
 func countBits(n int) []int {
-    rep := make([]int, 0)
-    for idx := 0; idx < n + 1; idx ++ {
-        rep = append(rep, strings.Count(strconv.FormatInt(int64(idx),2), "1"))
+    rep := make([]int, n+1)
+    for idx := 1; idx < n + 1; idx ++ {
+        rep[idx] = rep[idx / 2] + idx % 2
     }
     return rep
 }
