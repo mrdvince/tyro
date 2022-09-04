@@ -6,11 +6,13 @@
  * }
  */
 func middleNode(head *ListNode) *ListNode {
-    slow, fast := head, head
-    
+    if head == nil || head.Next == nil {
+        return head
+    }
+    fast := head
     for fast != nil && fast.Next !=nil {
-        slow = slow.Next
+        head = head.Next
         fast = fast.Next.Next
     }
-    return slow
+    return head
 }
