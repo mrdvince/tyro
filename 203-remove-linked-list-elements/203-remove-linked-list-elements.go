@@ -6,17 +6,15 @@
  * }
  */
 func removeElements(head *ListNode, val int) *ListNode {
-    newNode := ListNode{Next:head}
-    dummy := &newNode
-    prev, curr := dummy, head
-    for curr != nil {
-        next := curr.Next
-        if curr.Val == val {
-            prev.Next = next
+    dummy := &ListNode{Next:head}
+    prev := dummy
+    for head != nil {
+        if head.Val == val {
+            prev.Next = head.Next
         } else {
-            prev = curr
+            prev = head
         }
-        curr = next
+        head = head.Next
     }
     return dummy.Next
 }
