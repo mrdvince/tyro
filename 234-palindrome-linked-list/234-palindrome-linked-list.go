@@ -6,18 +6,26 @@
  * }
  */
 func isPalindrome(head *ListNode) bool {
-    var nums []int
-    for head != nil {
-        nums = append(nums, head.Val)
-        head = head.Next
-    }
-    left_ptr, right_ptr := 0, len(nums) - 1
-    for left_ptr <= right_ptr {
-        if nums[left_ptr] != nums[right_ptr] {
-            return false
-        }
-        left_ptr += 1
-        right_ptr -= 1
-    }
-    return true
+	slow, fast := head, head
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	// Reverse slow
+	var prev *ListNode
+	for slow != nil {
+		tmp := slow.Next
+		slow.Next = prev
+		prev = slow
+		slow = tmp
+	}
+
+	for head != nil && prev != nil {
+		if head.Val != prev.Val {
+			return false
+		}
+		head = head.Next
+		prev = prev.Next
+	}
+	return true
 }
