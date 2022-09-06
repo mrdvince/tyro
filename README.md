@@ -1,2 +1,2 @@
 # newbcode
-Collection of LeetCode questions to ace the coding interview! Not really .!
+Knocking myself out..!! I hear these things are pretty impossible.
