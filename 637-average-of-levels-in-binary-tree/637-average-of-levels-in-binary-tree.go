@@ -7,7 +7,7 @@
  * }
  */
 func averageOfLevels(root *TreeNode) []float64 {
-    result, queue := make([]float64, 0), []*TreeNode{root}
+    result, queue := []float64{}, []*TreeNode{root}
 	for len(queue) > 0 {
 		size, sum := len(queue), 0
 		for i := 0; i < size; i++ {
