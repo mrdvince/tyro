@@ -11,7 +11,7 @@ func romanToInt(s string) int {
     result := 0
     for idx := 0; idx < len(s); idx ++ {
         if idx + 1 < len(s) && numerals[s[idx]] < numerals[s[idx+1]] {
-            result = result - numerals[s[idx]]
+            result -= numerals[s[idx]]
         } else {
             result += numerals[s[idx]]
         }
