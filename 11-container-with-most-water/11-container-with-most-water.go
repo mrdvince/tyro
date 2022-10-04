@@ -2,9 +2,10 @@ func maxArea(height []int) int {
     maxArea, leftPtr, rightPtr := 0, 0, len(height) - 1
     
     for leftPtr < rightPtr {
-        gap := rightPtr - leftPtr
-        maxArea = max(maxArea, min(height[leftPtr], height[rightPtr]) * gap)
-        if height[leftPtr] < height[rightPtr] {
+        gap, left_val, right_val := (rightPtr - leftPtr), height[leftPtr], height[rightPtr]
+        maxArea = max(maxArea, min(left_val, right_val) * gap)
+        
+        if left_val < right_val {
             leftPtr ++
         } else {
             rightPtr --
