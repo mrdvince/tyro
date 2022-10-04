@@ -1,6 +1,8 @@
 func maxArea(height []int) int {
     maxArea, leftPtr, rightPtr := 0, 0, len(height) - 1
-    
+    if len(height) <=2 {
+        return min(height[0], height[1])
+    }
     for leftPtr < rightPtr {        
         maxArea = max(maxArea, min(height[leftPtr], height[rightPtr]) * (rightPtr - leftPtr))
         if height[leftPtr] < height[rightPtr] {
