@@ -1,13 +1,13 @@
 func characterReplacement(s string, k int) int {
-    res := 0
+    res, leftPtr, maxF := 0, 0, 0
     count := map[byte]int{}
-    leftPtr := 0
-    maxF := 0
-    
+
     for rightPtr, _ := range s {
         count[s[rightPtr]] = 1 + count[s[rightPtr]]
         maxF = max(maxF, count[s[rightPtr]])
-        if (rightPtr - leftPtr + 1) - maxF > k {
+        
+        windowLen := (rightPtr - leftPtr + 1)
+        if  windowLen - maxF > k {
             count[s[leftPtr]] -= 1
             leftPtr +=1
         }
