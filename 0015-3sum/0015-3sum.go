@@ -1,6 +1,7 @@
 func threeSum(nums []int) [][]int {
 	res := [][]int{}
-	sort.Slice(nums, func(i, j int) bool { return nums[i] < nums[j] })
+	// sort.Slice(nums, func(i, j int) bool { return nums[i] < nums[j] })
+    sort.Ints(nums)
 
 	for idx, num := range nums {
 		if idx > 0 && num == nums[idx-1] {
