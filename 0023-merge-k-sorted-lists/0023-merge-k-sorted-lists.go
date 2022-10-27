@@ -7,21 +7,19 @@
  */
 func mergeKLists(lists []*ListNode) *ListNode {
    if len(lists) == 0 {
-		return nil
-	}
-
-	if len(lists) == 1 {
-		return lists[0]
-	}
+        return nil
+    }
     
-    prev := lists[0]
-	var res *ListNode
-	for i := 1; i < len(lists); i++ {
-		res = mergeTwoLists(prev, lists[i])
-        prev= res      
-	}
+    var head *ListNode = lists[0]
+    if len(lists) == 1 {
+        return head
+    }
 
-	return res
+    for _, list := range lists[1:] {
+        head = mergeTwoLists(head, list)
+    }
+
+    return head
     
 }
 
