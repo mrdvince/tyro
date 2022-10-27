@@ -24,10 +24,8 @@ func mergeKLists(lists []*ListNode) *ListNode {
 }
 
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-    dummy := ListNode{}
-    dummy.Next = nil
-    tail := &dummy
-    
+    dummy := &ListNode{}
+    tail := dummy
     for list1 != nil && list2 != nil {
         if list1.Val < list2.Val {
             tail.Next = list1
@@ -38,7 +36,6 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
         }
         tail = tail.Next
     }
-    
     if list1 != nil {
         tail.Next = list1
     }
