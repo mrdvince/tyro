@@ -1,19 +1,20 @@
 func groupAnagrams(strs []string) [][]string {
-    res := [][]string{}
-    
-    sortvals := func(x string) string {
-        s := []rune(x)
-        sort.Slice(s, func(i int, j int) bool { return s[i] < s[j] })
-        return string(s)
-    }
-    
-    newstrs := map[string][]string{}
-    for idx, word := range strs {
-        newstrs[sortvals(word)] = append(newstrs[sortvals(word)], strs[idx])
-    }
-    
-    for _, words := range newstrs {
-        res = append(res, words)
-    }
-    return res
+	res := map[string][]string{}
+
+	for _, s := range strs {
+		count := make([]int, 26)
+		for _, c := range s {
+			count[c-'a'] += 1
+		}
+		key := strings.Trim(fmt.Sprint(count), "[]")
+		res[key] = append(res[key], s)
+	}
+
+	values := make([][]string, 0, len(res))
+	for _, v := range res {
+		values = append(values, v)
+	}
+	fmt.Println(values)
+
+	return values
 }
