@@ -1,39 +1,26 @@
 func spiralOrder(matrix [][]int) []int {
-    res := []int{}
-    left, right, top, bottom := 0, len(matrix[0]), 0, len(matrix)
-    
-    update := func(num int) {
-        res = append(res, num)
+    if len(matrix) == 0 {
+        return []int{}
     }
-    
-    for left < right && top < bottom {
-        // left to right
-        for i := left; i < right; i++ {
-            update(matrix[top][i])
+
+    rows, cols := len(matrix), len(matrix[0])
+    result := make([]int, 0, rows * cols)
+
+    row, col := 0, 0
+    d := 0
+    dx := []int{1, 0, -1, 0}
+    dy := []int{0, 1, 0, -1}
+
+    for i := 0; i < rows * cols; i++ {
+        result = append(result, matrix[row][col])
+        matrix[row][col] = 0
+        nrow, ncol := row + dy[d], col + dx[d]
+        if nrow < 0 || nrow >= rows || ncol < 0 || ncol >= cols || matrix[nrow][ncol] == 0 {
+            d = (d + 1) % 4
+            nrow, ncol = row + dy[d], col + dx[d]
         }
-        // done with top, shift down
-        top += 1
-        // get values in right
-        for i := top; i < bottom; i++ {
-            update(matrix[i][right - 1])
-        }
-        // done with right, shift left
-        right -= 1
-        if left >= right || top >= bottom {
-            break
-        }
-        // got bottom in reverse
-        for i := right-1; i >= left; i-- {
-            update(matrix[bottom - 1][i])
-        }
-        // done with bottom, shift up
-        bottom -= 1
-        // go up 
-        for i := bottom - 1; i >= top; i-- {
-            update(matrix[i][left])
-        }
-        left += 1
+        row, col = nrow, ncol
     }
-    
-    return res
+
+    return result
 }
