@@ -4,7 +4,7 @@ func spiralOrder(matrix [][]int) []int {
     }
     // rows and cols represent the number of rows and columns in the matrix
     rows, cols := len(matrix), len(matrix[0])
-    result := make([]int, rows * cols)
+    result := make([]int, 0, rows * cols)
     // row and col represent the current row and column position
     row, col := 0, 0
     // d represents the current direction of movement (0 = right, 1 = down, 2 = left, 3 = up)
@@ -14,7 +14,7 @@ func spiralOrder(matrix [][]int) []int {
     dx := []int{1, 0, -1, 0}
 
     for i := 0; i < rows * cols; i++ {
-        result[i] = matrix[row][col]
+        result = append(result, matrix[row][col])
         matrix[row][col] = 0
         nrow, ncol := row + dy[d], col + dx[d]
         // if next position is out of bounds or has already been visited, 
