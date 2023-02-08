@@ -1,14 +1,15 @@
 func canJump(nums []int) bool {
-	nos := len(nums)
-	if nos == 0 {
+	length := len(nums)
+	if length == 0 {
 		return false
 	}
 
-	lastPos := nos - 1
-	for idx := nos - 1; idx >= 0; idx-- {
-		if idx+nums[idx] >= lastPos {
-			lastPos = idx
+	lastReachableIndex := length - 1
+	for i := length - 1; i >= 0; i-- {
+		if i+nums[i] >= lastReachableIndex {
+			lastReachableIndex = i
 		}
 	}
-	return lastPos == 0
+
+	return lastReachableIndex == 0
 }
